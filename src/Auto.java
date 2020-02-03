@@ -3,6 +3,15 @@ import java.util.concurrent.TimeUnit;
 public class Auto {
 
     boolean engine = false;
+
+    public void setCurrentMoney(int currentMoney) {
+        this.currentMoney = currentMoney;
+    }
+
+    public int getCurrentMoney() {
+        return currentMoney;
+    }
+
     private int currentMoney = 50;
     private int petrolPrize = 3;
     private int maxSpeed = 100;

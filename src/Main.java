@@ -5,7 +5,7 @@ public class Main {
         Auto auto = new Auto();
         Droga droga = new Droga();
 
-        //auto.refuelCar(50);
+        auto.refuelCar(10);
         auto.turnEngineOnOff();
         auto.drive(droga);
 
