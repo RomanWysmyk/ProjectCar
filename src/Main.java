@@ -11,6 +11,23 @@ public class Main {
         auto.drive(droga);*/
 
         events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
+        events.eventRandomizer(auto);
 
     }
 }
