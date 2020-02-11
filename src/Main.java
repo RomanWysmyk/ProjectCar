@@ -6,28 +6,11 @@ public class Main {
         Droga droga = new Droga();
         RoadEvents events = new RoadEvents();
 
-        /*auto.refuelCar(10);
-        auto.turnEngineOnOff();
-        auto.drive(droga);*/
-
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-        events.eventRandomizer(auto);
-
+        Menu menu = new Menu();
+        menu.menuChoose(auto);
+        //auto.showMyStatus();
+        //auto.turnEngineOnOff();
+        //auto.refuelCar(50);
+        //auto.drive(droga);
     }
 }

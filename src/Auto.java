@@ -3,26 +3,25 @@ import java.util.concurrent.TimeUnit;
 public class Auto {
 
     boolean engine = false;
-
-    public void setCurrentMoney(int currentMoney) {
-        this.currentMoney = currentMoney;
-    }
+    private int currentMoney = 50;
+    private int petrolPrize = 3;
+    private int maxSpeed = 100;
+    private int carLoadLimit = 1000;
+    private int currentCarLoad = 900;
+    private double currentFuel = 10;
+    private double fuelMaxCap = 150;
 
     public int getCurrentMoney() {
         return currentMoney;
     }
 
-    private int currentMoney = 50;
-    private int petrolPrize = 3;
-    private int maxSpeed = 100;
-    private int currentSpeed = 0;
-    private int carWeight = 100;
-    private int currentFuel = 10;
-    private int fuelMaxCap = 150;
+    public void setCurrentMoney(int currentMoney) {
+        this.currentMoney = currentMoney;
+    }
 
     double refuelCar(int howMuchMoneySpendForFuel) {
 
-        if (howMuchMoneySpendForFuel > currentFuel || howMuchMoneySpendForFuel <= 0) {
+        if (howMuchMoneySpendForFuel > currentMoney || howMuchMoneySpendForFuel <= 0) {
             System.out.println("Masz niewystarczające środki na koncie");
         } else {
             int currentFueling = howMuchMoneySpendForFuel / petrolPrize;
@@ -56,7 +55,7 @@ public class Auto {
 
             for (int i = 0; i < droga.roadLenght; i++) {
                 TimeUnit.MILLISECONDS.sleep(deley);
-                currentFuel -= 1;
+                currentFuel -= 1 + fuelByLoadWeightComsumption();
                 System.out.println("Pokonałeś dystans: " + (i + 1) + " km");
 
                 if (currentFuel < 0) {
@@ -77,6 +76,38 @@ public class Auto {
             System.out.println("Nie udało się pojechać ponieważ silnik jest wyłączony");
 
         }
+
+
+    }
+
+    double fuelByLoadWeightComsumption() {
+
+        double percentOfConsumption = (((double) currentCarLoad) / (double) carLoadLimit) * 100;
+        double consumption = 0;
+
+        if (percentOfConsumption < 20 && percentOfConsumption > 0) {
+
+        } else if (percentOfConsumption >= 20 && percentOfConsumption < 40) {
+            consumption = 0.4;
+        } else if (percentOfConsumption >= 40 && percentOfConsumption < 60) {
+            consumption = 0.6;
+        } else if (percentOfConsumption >= 60 && percentOfConsumption < 80) {
+            consumption = 1;
+        } else if (percentOfConsumption >= 80 && percentOfConsumption < 100) {
+            consumption = 1.5;
+        }
+
+
+        return consumption;
+    }
+
+    void showMyStatus() {
+        System.out.println("Twoje oszczędności to :" + currentMoney + "$");
+        System.out.println("Twój stan paliwa: " + currentFuel + "L (Max " + fuelMaxCap + "L)");
+        System.out.println("Twój limit ładunku to: " + carLoadLimit + " kg.");
+        System.out.println("Masz załadowane " + currentCarLoad + " kg łądunku.");
+        System.out.println("Prędkośc twojego pojazdu to: " + maxSpeed + " km/h");
+        System.out.println("Twoje aktualne zużycie paliwa wynosi: " + (1 + fuelByLoadWeightComsumption()));
 
     }
 
