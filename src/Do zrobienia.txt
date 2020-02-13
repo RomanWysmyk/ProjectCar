@@ -1,0 +1,5 @@
+
+1. Implemenctacja metody samowywołującej się przy dojechanou do nowego miasta regulująca ceny
+2. dokończyć menu kupowania towarów.
+3. stworzyć menu sprzedaży
+4. stworzyć "aktualny stan załadunku"

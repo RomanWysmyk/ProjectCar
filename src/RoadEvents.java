@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class RoadEvents implements Interface {
+public class RoadEvents {
 
 
     /*eventRandomizer randomize event spawning during road travel
@@ -17,7 +17,6 @@ public class RoadEvents implements Interface {
 
         Random eventRandomizer = new Random();
         int x = eventRandomizer.nextInt(2);
-        System.out.println(" wyslowoana liczba to " + x);
 
         if (x == 0) {
 
@@ -27,10 +26,10 @@ public class RoadEvents implements Interface {
 
                     Random eventTriggerChance = new Random();
                     int spawnChance = eventTriggerChance.nextInt(100_000);
-                    if (spawnChance < 20000) {
+                    if (spawnChance < 5000) {
                         System.out.println("Pomagasz nieznajomemu w potrzebie z wymianą koła i otrzymujesz 10 $");
-                        auto.setCurrentMoney(+10);
-                        System.out.println("Masz teraz " + auto.getCurrentMoney() + " gotówki");
+                        auto.currentMoney += 10;
+                        System.out.println("Masz teraz " + auto.currentMoney + " gotówki");
                     }
                 }
             }
@@ -41,12 +40,12 @@ public class RoadEvents implements Interface {
 
             class Events {
                 void streetDemon(Auto auto) {
-                    if (eventRandomizer.nextInt(100_000) < 20000) {
+                    if (eventRandomizer.nextInt(100_000) < 3000) {
 
                         System.out.println("Otrzymujesz mandat za szybką jazdę. Musisz zapłacić 20 $ grzywny");
 
-                        auto.setCurrentMoney(-20);
-                        System.out.println("Pozostało Ci " + auto.getCurrentMoney() + " pieniędzy");
+                        auto.currentMoney -= 20;
+                        System.out.println("Pozostało Ci " + auto.currentMoney + " pieniędzy");
                     }
                 }
             }
@@ -54,8 +53,4 @@ public class RoadEvents implements Interface {
         }
     }
 
-    @Override
-    public void run() {
-
-    }
 }

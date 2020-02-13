@@ -3,11 +3,11 @@ import java.util.concurrent.TimeUnit;
 public class Auto {
 
     boolean engine = false;
-    private int currentMoney = 50;
+    int currentMoney = 50;
     private int petrolPrize = 3;
     private int maxSpeed = 100;
-    private int carLoadLimit = 1000;
-    private int currentCarLoad = 900;
+    int carLoadLimit = 1000;
+    int currentCarLoad = 0;
     private double currentFuel = 10;
     private double fuelMaxCap = 150;
 
@@ -30,7 +30,7 @@ public class Auto {
             } else {
                 currentMoney -= howMuchMoneySpendForFuel;
                 currentFuel += currentFueling;
-                System.out.println("Zatankowałeś Paliwo (Masz teraz " + currentFuel + " litrów w baku. Pozostało Ci " + currentMoney + " zł w portfelu)");
+                System.out.println("Zatankowałeś Paliwo (Masz teraz " + currentFuel + " litrów w baku. Pozostało Ci " + currentMoney + " dolarów w portfelu)");
             }
         }
         return currentFuel;
@@ -47,7 +47,7 @@ public class Auto {
         }
     }
 
-    void drive(Droga droga) throws InterruptedException {
+    boolean drive(Droga droga, Auto auto) throws InterruptedException {
         int deley = maxSpeed * 10;
         if (engine == true) {
 
@@ -57,26 +57,25 @@ public class Auto {
                 TimeUnit.MILLISECONDS.sleep(deley);
                 currentFuel -= 1 + fuelByLoadWeightComsumption();
                 System.out.println("Pokonałeś dystans: " + (i + 1) + " km");
+                RoadEvents eventStarter = new RoadEvents();
+                eventStarter.eventRandomizer(auto);
 
                 if (currentFuel < 0) {
                     System.out.println("Przegrałeś skończyło Ci się paliwo");
-                    break;
-                } else {
-                    if (droga.roadLenght == i + 1) {
+                    auto.gameOver();
+                    return false;
 
-                        System.out.println("Dojechałeś do :" + droga.nameOfTheRoad);
-                    }
                 }
-
             }
 
 
         } else {
 
             System.out.println("Nie udało się pojechać ponieważ silnik jest wyłączony");
+            return false;
 
         }
-
+        return true;
 
     }
 
@@ -109,6 +108,17 @@ public class Auto {
         System.out.println("Prędkośc twojego pojazdu to: " + maxSpeed + " km/h");
         System.out.println("Twoje aktualne zużycie paliwa wynosi: " + (1 + fuelByLoadWeightComsumption()));
 
+    }
+
+    void gameOver() {
+
+        System.out.println("-----KONIEC--GRY-----");
+        System.out.println();
+        System.out.println("Twoje osiągnięcia:");
+        System.out.println();
+        System.out.println("Łącznie przjechałeś: " + " kilometrów");
+        System.out.println("   Łącznie zarbiłeś: " + " dolarów");
+        System.exit(0);
     }
 
 
