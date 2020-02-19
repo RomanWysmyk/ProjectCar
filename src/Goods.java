@@ -1,32 +1,61 @@
 import java.util.Scanner;
 
-public class Goods {
+
+class BoxOfApples {
+    public static final int appleWeight = 20;
+    public static String name = "Skrzynia jabłek";
     Scanner scanner = new Scanner(System.in);
+    Boolean appleInit = false;
+    int applePrize = 20;
 
-    int generalGoods;
+    public String getName() {
+        return name;
+    }
 
-    static int applePrize = 30;
+    public void setApplePrize(int applePrize) {
+        this.applePrize = applePrize;
+    }
 
-    String appleName = "Skrzynia Jabłek";
-    static int appleWeight = 20;
-
-    public void buy(Auto auto) {
-        System.out.println("Ile sztuk towaru chcesz zakupić ?");
+    public void buyApples(Auto auto, BoxOfApples boxOfApples) {
+        System.out.println("Ile sztuk towaru chcesz kupić ?");
         int ile = scanner.nextInt();
-        if ((ile * applePrize) > auto.currentMoney) {
+        if ((ile * boxOfApples.applePrize) > auto.currentMoney) {
             System.out.println("Za mało funduszy");
         } else {
-            if ((ile * appleWeight) + auto.currentCarLoad > auto.carLoadLimit) {
+            if ((ile * boxOfApples.appleWeight) + auto.currentCarLoad > auto.carLoadLimit) {
                 System.out.println("Twój pojazd nie pomieści tyle towaru");
             } else {
-                System.out.println("Zakupiłeś " + ile + " " + appleName);
-                auto.currentCarLoad += ile * appleWeight;
-                auto.currentMoney -= ile * applePrize;
+                System.out.println("Zakupiłeś " + ile + " " + name + " za " + ile * applePrize + "$");
+                auto.currentCarLoad += ile * boxOfApples.appleWeight;
+                auto.currentMoney -= ile * boxOfApples.applePrize;
+                auto.numberOfApples += ile;
 
             }
-
         }
     }
 
+    public void sellApples(Auto auto, BoxOfApples boxOfApples) {
+        System.out.println("Ile sztuk towaru chcesz sprzedać ?");
+        int ile = scanner.nextInt();
+
+        if (auto.numberOfApples < ile) {
+            System.out.println("Nie masz tyle towaru!");
+
+        } else {
+            if ((ile * boxOfApples.appleWeight) + auto.currentCarLoad > auto.carLoadLimit) {
+                System.out.println("Twój pojazd nie pomieści tyle towaru");
+            } else {
+                System.out.println("Sprzedałeś " + ile + " " + name + " za " + ile * applePrize + "$");
+                auto.currentCarLoad -= ile * boxOfApples.appleWeight;
+                auto.currentMoney += ile * boxOfApples.applePrize;
+                auto.numberOfApples -= ile;
+
+            }
+        }
+
+
+    }
 
 }
+
+

@@ -2,13 +2,14 @@ import java.util.concurrent.TimeUnit;
 
 public class Auto {
 
+    public static int numberOfApples = 0;
     boolean engine = false;
-    int currentMoney = 50;
-    private int petrolPrize = 3;
-    private int maxSpeed = 100;
-    int carLoadLimit = 1000;
+    int currentMoney = 300;
+    int carLoadLimit = 500;
     int currentCarLoad = 0;
-    private double currentFuel = 10;
+    private int petrolPrize = 3;
+    private int maxSpeed = 10;
+    private double currentFuel = 50;
     private double fuelMaxCap = 150;
 
     public int getCurrentMoney() {
@@ -101,14 +102,27 @@ public class Auto {
     }
 
     void showMyStatus() {
-        System.out.println("Twoje oszczędności to :" + currentMoney + "$");
-        System.out.println("Twój stan paliwa: " + currentFuel + "L (Max " + fuelMaxCap + "L)");
-        System.out.println("Twój limit ładunku to: " + carLoadLimit + " kg.");
-        System.out.println("Masz załadowane " + currentCarLoad + " kg łądunku.");
-        System.out.println("Prędkośc twojego pojazdu to: " + maxSpeed + " km/h");
-        System.out.println("Twoje aktualne zużycie paliwa wynosi: " + (1 + fuelByLoadWeightComsumption()));
+        if (engine == true) {
+            System.out.println("Silnik włączony");
+        } else {
+            System.out.println("Silnik wyłączony");
+        }
+        System.out.println("Twoje oszczędności: " + currentMoney + "$");
+        System.out.println("Stan paliwa: " + currentFuel + "L (Max " + fuelMaxCap + "L)");
+        System.out.println("Limit ładunku: " + carLoadLimit + " kg.");
+        System.out.println("Masz załadowane " + currentCarLoad + " kg ładunku.");
+        System.out.println("Prędkośc maksymalna pojazdu: " + maxSpeed + " km/h");
+        System.out.println("Aktualne zużycie paliwa: " + (1 + fuelByLoadWeightComsumption()));
+        System.out.println();
+        System.out.println("Aktualnie posiadasz: ");
+        if (numberOfApples > 0) {
+            System.out.println(BoxOfApples.name + " - ilość " + numberOfApples + " (Łączna waga " + numberOfApples * BoxOfApples.appleWeight + " kg)");
+        } else {
+            System.out.println("Nie posiadasz aktualnie rzadnych towarów");
+        }
 
     }
+
 
     void gameOver() {
 

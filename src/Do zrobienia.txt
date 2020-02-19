@@ -3,3 +3,5 @@
 2. dokończyć menu kupowania towarów.
 3. stworzyć menu sprzedaży
 4. stworzyć "aktualny stan załadunku"
+5. stworzyć ceny paliw w każdym mieście
+Ł

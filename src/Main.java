@@ -7,10 +7,7 @@ public class Main {
         RoadEvents events = new RoadEvents();
 
         Menu menu = new Menu();
-        menu.menuChoose(auto);
-        //auto.showMyStatus();
-        //auto.turnEngineOnOff();
-        //auto.refuelCar(50);
-        //auto.drive(droga);
+        menu.menuNewYork(auto);
+
     }
 }
